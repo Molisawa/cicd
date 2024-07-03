@@ -19,6 +19,6 @@ jobs:
       run: docker login -u molisawa -p 3323550062Pp
       
     - name: Build the Docker image
-      run: docker build -t varsubham/cicd-pipeline .
+      run: docker build -t Molisawa/cicd-pipeline .
     - name: Push to Dockerhub
-      run: docker push varsubham/cicd-pipeline:latest
+      run: docker push Molisawa/cicd-pipeline:latest
