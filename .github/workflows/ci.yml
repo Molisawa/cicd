@@ -21,12 +21,11 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
     - name: Build, tag, and push docker image to Amazon ECR Private
       env:
-        REGISTRY: public.ecr.aws
-        REGISTRY_ALIAS: z7e2z2v1
-        REPOSITORY: p-aws-ecr
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: p-aws-ecrp
         IMAGE_TAG: latest
       run: |
-          sudo docker build -t 690464062239.dkr.ecr.us-east-1.amazonaws.com/p-aws-ecrp:$IMAGE_TAG .
-          sudo docker push 690464062239.dkr.ecr.us-east-1.amazonaws.com/p-aws-ecrp:$IMAGE_TAG
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
     
