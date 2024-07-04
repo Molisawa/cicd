@@ -25,7 +25,7 @@ jobs:
         REPOSITORY: p-aws-ecrp
         IMAGE_TAG: latest
       run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          sudo docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          sudo docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
     
