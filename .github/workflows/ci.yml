@@ -16,12 +16,9 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
       with:
         aws-region: us-east-1
-    - name: Login to Amazon ECR Public
+    - name: Login to Amazon ECR private
       id: login-ecr-public
       uses: aws-actions/amazon-ecr-login@v2
-      with:
-        registry-type: public
-
     - name: Build, tag, and push docker image to Amazon ECR Public
       env:
         REGISTRY: public.ecr.aws
@@ -29,7 +26,7 @@ jobs:
         REPOSITORY: p-aws-ecr
         IMAGE_TAG: latest
       run: |
-          sudo docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          sudo docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          sudo docker build -t 690464062239.dkr.ecr.us-east-1.amazonaws.com/p-aws-ecrp:$IMAGE_TAG .
+          sudo docker push 690464062239.dkr.ecr.us-east-1.amazonaws.com/p-aws-ecrp:$IMAGE_TAG
 
     
