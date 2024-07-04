@@ -8,17 +8,24 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
-    - name: Login Dockerhub
+    - name: Login to Amazon ECR Public
+      id: login-ecr-public
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registry-type: public
+
+    - name: Build, tag, and push docker image to Amazon ECR Public
       env:
-        DOCKER_USERNAME: molisawa
-        DOCKER_PASSWORD: 3323550062Pp
-      run: docker login -u molisawa -p 3323550062Pp
-      
-    - name: Build the Docker image
-      run: docker build -t molisawa/cicd-pipeline .
-    - name: Push to Dockerhub
-      run: docker push molisawa/cicd-pipeline:latest
+        REGISTRY: public.ecr.aws
+        REGISTRY_ALIAS: z7e2z2v1
+        REPOSITORY: p-aws-ecr
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+
+    
