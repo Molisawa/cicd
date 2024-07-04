@@ -27,7 +27,7 @@ jobs:
         REGISTRY: public.ecr.aws
         REGISTRY_ALIAS: z7e2z2v1
         REPOSITORY: p-aws-ecr
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
       run: |
           sudo docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
           sudo docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
