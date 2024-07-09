@@ -4,11 +4,8 @@ const app = express();
 
 
 app.get('/', (req, res) => {
-    res.json({ status:200,message: 'Hello World test teams' });
+    res.json({ status:200,message: 'API' });
 }  );
-
-
-
 
 
 app.listen(8080, () => {
