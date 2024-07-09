@@ -4,7 +4,7 @@ const app = express();
 
 
 app.get('/', (req, res) => {
-    res.json({ status:200,message: 'API' });
+    res.json({ status:200,message: 'Hola a todos' });
 }  );
 
 
